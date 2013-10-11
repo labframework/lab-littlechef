@@ -1,0 +1,6 @@
+.rvmrc
+npm-debug.log
+cookbooks
+tmp
+nodes
+build

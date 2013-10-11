@@ -1,0 +1,69 @@
+{
+    "name": "lab-server",
+    "chef_type": "role",
+    "json_class": "Chef::Role",
+    "run_list": [
+        "recipe[apt]",
+        "recipe[users::sysadmins]",
+        "recipe[deploy-user]",
+        "recipe[sudo]",
+        "recipe[git]",
+        "recipe[zip]",
+        "recipe[java]",
+        "recipe[maven]",
+        "recipe[emacs]",
+        "recipe[apache2]",
+        "recipe[rvm::system]",
+        "recipe[rvm_passenger::apache2]",
+        "recipe[phantomjs]",
+        "recipe[lab-server]"
+    ],
+    "default_attributes": {
+        "deploy_user_keys": {
+            "group_definitions": {
+                "internal_developers": [
+                  "stepheneb"
+                ]
+            },
+            "users": [ "internal_developers"]
+        },
+        "authorization": {
+            "sudo": {
+                "passwordless": true,
+                "users": [
+                    "ubuntu",
+                    "deploy"
+                ],
+                "groups": [
+                    "sysadmin",
+                    "admin"
+                ]
+            }
+        },
+        "java": {
+          "install_flavor": "openjdk"
+        },
+        "maven": {
+          "version": "3"
+        },
+        "nodejs": {
+            "install_method": "package"
+        },
+        "rvm": {
+          "upgrade": "stable",
+          "default_ruby": "ruby-2.0.0-p247",
+          "group_users": [ "deploy" ],
+          "global_gems": [
+            { "name": "chef", "version": "11.6.0" }
+          ]
+        },
+        "rvm_passenger": {
+          "version":     "4.0.8",
+          "rvm_ruby":    "ruby-2.0.0-p247"
+        },
+        "phantomjs": {
+          "version":     "1.9.1"
+        }
+    },
+    "override_attributes": {}
+}
