@@ -188,14 +188,8 @@ else
 end
 
 link "/usr/local/bin/mvn" do
-  to "/usr/local/maven-3.1.0/bin/mvn"
+  to "/usr/local/maven-3.0.5/bin/mvn"
 end
-
-# # maven needs this to work if JAVA_HOME isn't defined
-# link "/usr/lib/jvm/default-java" do
-#   to "/usr/lib/jvm/java-6-openjdk-amd64/jre"
-# end
-#
 
 # execute "disable-default-apache2-site" do
 #   command "sudo a2dissite default"

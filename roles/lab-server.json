@@ -44,7 +44,13 @@
           "install_flavor": "openjdk"
         },
         "maven": {
-          "version": "3"
+          "version": "3",
+          "3": {
+            "version": "3.0.5",
+            "url": "http://apache.mirrors.tds.net/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz",
+            "checksum": "d98d766be9254222920c1d541efd466ae6502b82a39166c90d65ffd7ea357dd9"
+          },
+          "setup_bin": true
         },
         "nodejs": {
             "install_method": "package"
