@@ -158,10 +158,24 @@ directory "/var/www/app/tmp" do
   mode "775"
 end
 
+execute "configure bundler to skip installation of gems in development group" do
+  user "deploy"
+  cwd "/var/www/app"
+  environment (
+    {
+      "PATH" => "PATH=/usr/local/rvm/gems/ruby-2.0.0-p247@lab/bin:/usr/local/rvm/gems/ruby-2.0.0-p247@global/bin:/usr/local/rvm/rubies/ruby-2.0.0-p247/bin:/usr/local/rvm/bin:/usr/local/maven-3.0.5/bin:/usr/local/sbin:/usr/local/bin:/usr/bin",
+      "GEM_PATH" => "/usr/local/rvm/gems/ruby-2.0.0-p247@lab:/usr/local/rvm/gems/ruby-2.0.0-p247@global",
+      "RUBY_VERSION" => "ruby-2.0.0-p247"
+    }
+  )
+  command "bundle config --local without development"
+end
+
 execute "fix-permissions" do
   user "deploy"
   command <<-COMMAND
   sudo chown -R deploy:root /var/www/app/*
+  sudo chown -R deploy:root /var/www/app/.[^.]*
   sudo chmod -R ug+rw /var/www/app/*
   sudo chgrp -R deploy /usr/local/rvm/*
   sudo chmod -R g+w /usr/local/rvm/*

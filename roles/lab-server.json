@@ -57,18 +57,18 @@
         },
         "rvm": {
           "upgrade": "stable",
-          "default_ruby": "ruby-2.0.0-p247",
+          "default_ruby": "ruby-2.0.0-p247@lab",
           "group_users": [ "deploy" ],
           "global_gems": [
-            { "name": "chef", "version": "11.6.0" }
+            { "name": "chef", "version": "11.6.2" }
           ]
         },
         "rvm_passenger": {
-          "version":     "4.0.8",
-          "rvm_ruby":    "ruby-2.0.0-p247"
+          "version":     "4.0.20",
+          "rvm_ruby":    "ruby-2.0.0-p247@lab"
         },
         "phantomjs": {
-          "version":     "1.9.1"
+          "version":     "1.9.2"
         }
     },
     "override_attributes": {}
